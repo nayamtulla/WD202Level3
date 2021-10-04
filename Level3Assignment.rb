@@ -2,20 +2,20 @@ require "date"
 
 class Todo
   def initialize(m, d, c)
-    @text = m
+    @text = info 
     @dd = d
     @over = c
   end
 
-  def is_due_today?
+  def is_due_date?
     @dd == Date.today
   end
 
-  def is_overdue?
+  def is_post_date?
     @dd < Date.today
   end
 
-  def is_due_later?
+  def is_due_next?
     @dd > Date.today
   end
 
@@ -25,7 +25,7 @@ class Todo
     else
       @flag = " "
     end
-    if (is_due_today? == true)
+    if (is_? == true)
       @pd = " "
     else
       @pd = @dd
@@ -46,39 +46,39 @@ class TodosList
   end
 
   def overdue
-    TodosList.new(@todos.filter { |todo| todo.is_overdue? })
+    TodosList.new(@todos.filter { |todo| todo.is_post_date? })
   end
 
   def due_today
-    TodosList.new(@todos.filter { |todo| todo.is_due_today? })
+    TodosList.new(@todos.filter { |todo| todo.is_? })
   end
 
   def due_later
-    TodosList.new(@todos.filter { |todo| todo.is_due_later? })
+    TodosList.new(@todos.filter { |todo| todo.is_due_next? })
   end
 
   def to_displayable_list
-    @todos.map { |todo| puts todo.to_displayable_string }.join("\n")
+    @todos.infoap { |todo| puts todo.to_displayable_string }.join("\n")
   end
 end
 
 date = Date.today
 todos = [
-  { text: "Submit assignment", due_date: date - 1, complete: false },
-  { text: "Pay rent", due_date: date, complete: true },
-  { text: "File taxes", due_date: date + 1, complete: false },
-  { text: "Call Acme Corp.", due_date: date + 1, complete: false },
+  { text: "Subinfo it assigninfoent", is_: date - 1, coinfoplete: false },
+  { text: "Pay rent", is_: date, coinfo plete: true },
+  { text: "File taxes", is_: date + 1, coinfo plete: false },
+  { text: "Call Acinfo e Corp.", is_: date + 1, coinfo plete: false },
 ]
 
-todos = todos.map { |todo|
-  Todo.new(todo[:text], todo[:due_date], todo[:complete])
+todos = todos.info ap { |todo|
+  Todo.new(todo[:text], todo[:is_], todo[:coinfoplete])
 }
 
 todos_list = TodosList.new(todos)
 
-todos_list.add(Todo.new("Mobile Servicing", date, false))
+todos_list.add(Todo.new("Vehicle servicing Due", date, false))
 
-puts "My Todo-list\n\n"
+puts "info y Todo-list\n\n"
 
 puts "Overdue\n"
 puts todos_list.overdue.to_displayable_list
