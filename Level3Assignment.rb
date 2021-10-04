@@ -76,7 +76,7 @@ todos = todos.map { |todo|
 
 todos_list = TodosList.new(todos)
 
-todos_list.add(Todo.new("Service Your vehicle", date, false))
+todos_list.add(Todo.new("Mobile Servicing", date, false))
 
 puts "My Todo-list\n\n"
 
